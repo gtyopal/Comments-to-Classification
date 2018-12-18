@@ -1,0 +1,39 @@
+1. Run "cluster_to_classifier.py" to train the classifier based on the output data file of clustering model.
+2. Get final clustering result files of kmeans_cluster_tags.csv/dbscan_cluster_tags.csv as the labeled training dataset for next classification step.
+4. Parameters for Turi-bolt testing:
+name: 'Hyperparamter Search for Comments Cluster-to-Classification'
+setup_command: 'bash setup.sh'
+command: 'python cluster_to_classifier.py'
+resources:
+  cluster: simcloud-rd1.apple.com
+  image: 'ubuntu16.04-v1'
+  num_gpus: 1
+  memory_gb: 36
+
+parameters:
+  nb_epoch: 100
+  batch_size: 32
+  max_features: 60000
+
+tune:
+  name: 'Hyperparamter Search for Comments Cluster-to-Classifier'
+
+  search_strategy:
+    type: RANDOM_SEARCH
+
+  objective_label: 'acc'
+  objective_goal: MAXIMIZE
+
+  num_trials: 200
+  max_concurrent_trials: 50
+
+  hyperparameters:
+
+    max_len:
+      type: CATEGORY
+      range: [100,300,500]
+
+    embedding_length:
+      type: CATEGORY
+      range: [100,300]
+

@@ -1,0 +1,15 @@
+{   "input_dataset_path":"../data/minibatchkmeans_cluster_tags.csv",
+    "clean_dataset_path":"../data/minibatchkmeans_cluster_tags_clean.csv",
+    "words_path":"../dict/words.dict",
+    "weights_path":"../weights/weights.h5",
+    "model_path":"../model",
+    "category2id_path":"../dict/category2id.dict",
+    "maxlen":500,
+    "max_features":60000,
+    "batch_size":32,
+    "nb_epoch":10,
+    "embedding_length":100,
+    "nb_classes":159,
+    "gpuid":0,
+    "split_rate":0.1
+}
